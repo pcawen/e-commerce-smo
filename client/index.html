@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <title>MEAN Stack App</title>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+
+    <div ng-controller="MainController">
+        <h1>My Angular 1.x App</h1>
+        <form ng-submit="addProduct()">
+            <input type="text" ng-model="newProduct.name" placeholder="Product Name">
+            <input type="number" ng-model="newProduct.price" placeholder="Price">
+            <input type="text" ng-model="newProduct.description" placeholder="Description">
+            <button type="submit">Add Product</button>
+        </form>
+
+        <h2>Products List</h2>
+        <ul>
+            <li ng-repeat="product in products">
+                {{ product.name }} - ${{ product.price }}
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>
