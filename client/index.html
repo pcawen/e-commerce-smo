@@ -1,28 +1,39 @@
 <!doctype html>
-<html ng-app="myApp">
+<html ng-app="somnioApp">
 <head>
     <title>MEAN Stack App</title>
     <script src="node_modules/angular/angular.js"></script>
-    <script src="app.js"></script>
+    <script src="src/app.js"></script>
+    <script src="src/services/products.service.js"></script>
+    <script src="src/components/product-card/product-card.component.js"></script>
+    <script src="src/components/app-header/app-header.component.js"></script>
+    <script src="src/components/product-list/product-list.component.js"></script>
+    
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="src/components/product-card/product-card.css">
+    <link rel="stylesheet" href="src/components/app-header/app-header.css">
+    <link rel="stylesheet" href="src/components/product-list/product-list.css">
 </head>
 <body>
 
-    <div ng-controller="MainController">
-        <h1>My Angular 1.x App</h1>
-        <form ng-submit="addProduct()">
+    <div ng-controller="MainController" class="app-container">
+
+        <app-header></app-header>
+        <product-list></product-list>
+
+        <hr>
+        <h3>Add New Product</h2>
+        <form ng-submit="submitNewProduct()">
             <input type="text" ng-model="newProduct.name" placeholder="Product Name">
             <input type="number" ng-model="newProduct.price" placeholder="Price">
             <input type="text" ng-model="newProduct.description" placeholder="Description">
-            <button type="submit">Add Product</button>
+            <button class="secondary-btn" type="submit">Add Product</button>
         </form>
 
-        <h2>Products List</h2>
-        <ul>
-            <li ng-repeat="product in products">
-                {{ product.name }} - ${{ product.price }}
-            </li>
-        </ul>
-    </div>
+        <h3>Bulk Upload</h2>
+        <button class="secondary-btn" ng-click="uploadBulkProducts()">Upload 10 Auto generated Products</button>
+        <p>{{ bulkUploadMessage }}</p>
 
+    </div>
 </body>
 </html>

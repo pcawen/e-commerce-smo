@@ -1,0 +1,31 @@
+<h2>Products</h2>
+
+<div class="search-controls">
+    <div>
+        Sort by:
+        <select ng-model="$ctrl.productsService.query.sortBy" ng-change="$ctrl.onSortChange()">
+            <option value="">None</option>
+            <option value="name">Name</option>
+            <option value="price">Price</option>
+        </select>
+    </div>
+    <div>
+        Order:
+        <select ng-model="$ctrl.productsService.query.sortOrder" ng-change="$ctrl.onSortChange()">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+    </div>
+</div>
+
+<p ng-show="$ctrl.productsService.displayedProducts.length === 0">No products found.</p>
+
+<ul class="product-grid">
+    <li ng-repeat="product in $ctrl.productsService.displayedProducts">
+        <product-card product="product"></product-card>
+    </li>
+</ul>
+
+<div class="load-more-container" ng-show="$ctrl.productsService.hasMoreData">
+    <button ng-click="$ctrl.loadMore()">Load More</button>
+</div>
