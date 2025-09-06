@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
+    margin-bottom: 1.87rem;
+    padding-bottom: .937rem;
     border-bottom: 1px solid #e0e0e0;
 }
 
@@ -13,17 +13,17 @@
 }
 
 .logo-image {
-    height: 40px;
+    height: 2.5rem;
     width: auto;
-    max-width: 200px;
+    max-width: 12.5;
 }
 
 .search-bar input {
-    padding: 10px 15px;
-    font-size: 16px;
+    padding: .625rem .937rem;
+    font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 300px;
+    border-radius: .312rem;
+    width: 18.75rem;
 }
 
 .search-input-container {
@@ -32,23 +32,23 @@
 }
 
 .search-input-container input {
-    padding-right: 35px;
-    width: 300px;
+    padding-right: 2.187rem;
+    width: 18.75rem;
 }
 
 .clear-button {
     position: absolute;
-    right: 8px;
+    right: .5rem;
     top: 50%;
     transform: translateY(-50%);
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 1.25rem;
     color: #999;
     cursor: pointer;
     padding: 0;
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
     display: flex;
     align-items: center;
     justify-content: center;

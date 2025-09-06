@@ -6,7 +6,7 @@ ProductsService.$inject = ['$http'];
 
 function ProductsService($http) {
     const ITEMS_PER_PAGE = 3;
-    const API_BATCH_SIZE = 5;
+    const API_BATCH_SIZE = 6;
     const BASE_URL = 'http://localhost:3000/products'
 
     const service = {
@@ -21,7 +21,7 @@ function ProductsService($http) {
         
         loadMoreProducts: loadMoreProducts,
         resetAndFetch: resetAndFetch,
-        addProduct: addProduct,
+        addProduct: addProduct
     };
 
     let currentBatch = [];
@@ -30,18 +30,16 @@ function ProductsService($http) {
     return service;
 
     function loadMoreProducts() {
-        if (batchOffset < currentBatch.length) {
-            const nextItems = currentBatch.slice(batchOffset, batchOffset + ITEMS_PER_PAGE);
-            service.displayedProducts = service.displayedProducts.concat(nextItems);
-            batchOffset += ITEMS_PER_PAGE;
-        }
-
         if (batchOffset >= currentBatch.length) {
-            fetchNewBatch().then(function(newBatch) {
+            return fetchNewBatch().then(function(newBatch) {
                 if (newBatch.length > 0) {
-                    loadMoreProducts();
+                    displayNextItems();
+                } else {
+                    service.hasMoreData = false;
                 }
             });
+        } else {
+            displayNextItems();
         }
     }
 
@@ -51,15 +49,19 @@ function ProductsService($http) {
         service.hasMoreData = true;
         currentBatch = [];
         batchOffset = 0;
-        return fetchNewBatch().then(function() {
-                loadMoreProducts();
+        return fetchNewBatch().then(function(newBatch) {
+            if (newBatch.length > 0) {
+                displayNextItems();
+            } else {
+                service.hasMoreData = false;
+            }
         });
     }
     
     function addProduct(productsToUpload) {
         return $http.post(BASE_URL, productsToUpload)
     }
-
+    
     function fetchNewBatch() {
         const url = buildQueryUrl();
         
@@ -67,13 +69,6 @@ function ProductsService($http) {
             .then(function(response) {
                 currentBatch = response.data;
                 service.query.offset += currentBatch.length;
-                
-                if (currentBatch.length < API_BATCH_SIZE) {
-                    service.hasMoreData = false;
-                } else {
-                    service.hasMoreData = true;
-                }
-                
                 batchOffset = 0;
                 return currentBatch;
             })
@@ -82,6 +77,16 @@ function ProductsService($http) {
                 service.hasMoreData = false;
                 return [];
             });
+    }
+    
+    function displayNextItems() {
+        if (currentBatch.length === 0) {
+            service.hasMoreData = false;
+            return;
+        }
+        const nextItems = currentBatch.slice(batchOffset, batchOffset + ITEMS_PER_PAGE);
+        service.displayedProducts = service.displayedProducts.concat(nextItems);
+        batchOffset += ITEMS_PER_PAGE;
     }
 
     function buildQueryUrl() {

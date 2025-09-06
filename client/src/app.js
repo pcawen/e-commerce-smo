@@ -31,6 +31,7 @@ function MainController($scope, ProductsService) {
 
         ProductsService.addProduct(productsToUpload)
         .then(function(response) {
+            console.log('response:', response)
             $scope.bulkUploadMessage = response.data.message;
         })
         .catch(function(error) {

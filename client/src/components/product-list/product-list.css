@@ -1,23 +1,23 @@
 .search-controls {
     display: flex;
-    gap: 15px;
-    margin-bottom: 25px;
+    gap: .937rem;
+    margin-bottom: 1.562rem;
     flex-wrap: wrap;
     align-items: center;
 }
 
 .search-controls select {
-    padding: 10px 15px;
+    padding: .625rem .937rem;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: .312rem;
     background-color: white;
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+    gap: 1.25rem;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -25,17 +25,17 @@
 
 .load-more-container {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 1.875rem;
 }
 
 .load-more-container button {
     background-color: #3498db;
     color: white;
     border: none;
-    padding: 12px 25px;
-    border-radius: 5px;
+    padding: .75rem 1.562rem;
+    border-radius: .312rem;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 1.125rem;
     transition: background-color 0.3s ease;
 }
 
