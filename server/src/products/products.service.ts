@@ -1,24 +1,24 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { AnyBulkWriteOperation, Model } from 'mongoose';
 import { Product, ProductDocument } from './schemas/product.schema';
 
 @Injectable()
 export class ProductsService {
   constructor(@InjectModel(Product.name) private productModel: Model<ProductDocument>) {}
 
-  async create(createProductDto: any): Promise<Product> {
-    const createdProduct = new this.productModel(createProductDto);
-    return createdProduct.save();
+    async create(products: Product[]): Promise<any> {
+    const bulkOps: AnyBulkWriteOperation<Product>[] = products.map(product => ({
+      updateOne: {
+        filter: { sku: product.sku },
+        update: { $set: product },
+        upsert: true,
+      },
+    }));
+  
+    return this.productModel.bulkWrite(bulkOps, { ordered: false });
   }
 
-  async createBulk(products: Product[]): Promise<Product[]> {
-    return this.productModel.insertMany(products);
-  }
-
-//   async findAll(): Promise<Product[]> {
-//     return this.productModel.find().exec();
-//   }
   async findAll(query: {
     search?: string;
     limit?: number;

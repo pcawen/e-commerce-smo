@@ -1,5 +1,8 @@
 <div class="product-card">
     <h3>{{ $ctrl.product.name }}</h3>
     <div class="price">{{ $ctrl.product.price | currency }}</div>
-    <div class="description">{{ $ctrl.product.description }}</div>
+    <div class="footer">
+        <div class="description">{{ $ctrl.product.description }}</div>
+        <div class="sku">SKU: {{ $ctrl.product.sku }}</div>
+    </div>
 </div>

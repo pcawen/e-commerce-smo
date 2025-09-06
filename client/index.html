@@ -24,15 +24,21 @@
         <hr>
         <h3>Add New Product</h2>
         <form ng-submit="submitNewProduct()">
+            <input type="text" ng-model="newProduct.sku" placeholder="SKU">
             <input type="text" ng-model="newProduct.name" placeholder="Product Name">
             <input type="number" ng-model="newProduct.price" placeholder="Price">
             <input type="text" ng-model="newProduct.description" placeholder="Description">
-            <button class="secondary-btn" type="submit">Add Product</button>
+            <button class="secondary-btn" type="submit">Add/Update Product</button>
         </form>
+        <li ng-repeat="msg in upsertProduct" class="message">
+            <p>{{ msg }}</p>
+        </li>
 
         <h3>Bulk Upload</h2>
         <button class="secondary-btn" ng-click="uploadBulkProducts()">Upload 10 Auto generated Products</button>
-        <p>{{ bulkUploadMessage }}</p>
+        <li ng-repeat="msg in bulkUploadMessage" class="message">
+            <p>{{ msg }}</p>
+        </li>
 
     </div>
 </body>

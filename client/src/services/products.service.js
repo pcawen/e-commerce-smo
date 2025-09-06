@@ -22,7 +22,6 @@ function ProductsService($http) {
         loadMoreProducts: loadMoreProducts,
         resetAndFetch: resetAndFetch,
         addProduct: addProduct,
-        addProductBulk: addProductBulk
     };
 
     let currentBatch = [];
@@ -57,19 +56,8 @@ function ProductsService($http) {
         });
     }
     
-    function addProduct(newProduct) {
-        return $http.post(BASE_URL, newProduct)
-            .then(function(response) {
-                return resetAndFetch();
-            })
-            .catch(function(error) {
-                console.error('Error adding product:', error);
-                return error;
-            });
-    }
-
-    function addProductBulk(productsToUpload) {
-        return $http.post(`${BASE_URL}/bulk`, productsToUpload)
+    function addProduct(productsToUpload) {
+        return $http.post(BASE_URL, productsToUpload)
     }
 
     function fetchNewBatch() {

@@ -34,4 +34,14 @@
         line-height: 1.5;
         flex-grow: 1;
     }
+
+    .sku {
+        text-align: end;
+        font-size: 10px;
+        align-self: end;
+    }
+
+    .footer {
+        display: flex;
+    }
 }

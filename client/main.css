@@ -39,22 +39,6 @@ form input {
     min-width: 150px;
 }
 
-/* form button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-form button:hover {
-    background-color: #218838;
-} */
-
-
 .secondary-btn {
     background-color: #e2e2e2;
     color: #616161;
@@ -68,4 +52,11 @@ form button:hover {
 
 .secondary-btn:hover {
     background-color: #c7c6c6;
+}
+
+
+.message {
+    list-style: none;
+    color: #6f6f6f;
+    font-size: 12px;
 }
