@@ -11,8 +11,7 @@ Database: MongoDB
 ## Backend (api)
 ```
 cd server
-npm install
-npm run start:dev
+docker-compose up
 ```
 
 Ducumentation in http://localhost:3000/docs
