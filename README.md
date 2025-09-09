@@ -37,3 +37,13 @@ If an error is expected to show if the sku is already present two new endpoints 
 
 Endpoints are not secured. A simple approach will be to create a login endpoint that returns a jwt token that is later returned by the front end and used to validate the user.
 
+
+##Update
+On sep 9, I updated docker.compose adding 
+```
+env_file:
+    - .env
+```
+To fix a bug preventing env vars from to being available to nodejs
+
+
